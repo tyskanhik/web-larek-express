@@ -3,11 +3,12 @@ import { Error as MongooseError } from 'mongoose';
 import Product from '../models/product';
 import ConflictError from '../errors/conflict-error';
 import BadRequestError from '../errors/bad-request-error';
+import { statusCode } from '../types/statusCode';
 
 export const getAllProducts = async (_req: Request, res: Response, next: NextFunction) => {
     try {
         const products = await Product.find({});
-        res.status(200).json({ items: products, total: products.length });
+        res.status(statusCode.OK).json({ items: products, total: products.length });
     } catch (err) {
         next(err);
     }

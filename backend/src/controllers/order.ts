@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { faker } from '@faker-js/faker';
 import BadRequestError from '../errors/bad-request-error';
 import Product from '../models/product';
+import { statusCode } from '../types/statusCode';
 
 export const createOrder = async (req: Request, res: Response, next: NextFunction) => {
     const { items, total } = req.body;
@@ -26,7 +27,7 @@ export const createOrder = async (req: Request, res: Response, next: NextFunctio
         }
 
         const orderId = faker.string.uuid();
-        return res.status(201).json({
+        return res.status(statusCode.CREATED).json({
             id: orderId,
             total,
         });

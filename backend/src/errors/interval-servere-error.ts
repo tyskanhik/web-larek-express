@@ -1,12 +1,12 @@
 import { statusCode } from '../types/statusCode';
 
-class NotFoundError extends Error {
+class IntervalServereError extends Error {
     public statusCode: number;
 
     constructor(message: string) {
         super(message);
-        this.statusCode = statusCode.NOT_FOUND;
+        this.statusCode = statusCode.INTERNAL_SERVER_ERROR;
     }
 }
 
-export default NotFoundError;
+export default IntervalServereError;
